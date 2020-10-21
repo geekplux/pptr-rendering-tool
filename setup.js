@@ -1,5 +1,11 @@
 const chrome = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer');
+let puppeteer
+try {
+  puppeteer = require('puppeteer');
+} catch (error) {
+  console.error(error)
+}
+
 const puppeteerCore = require('puppeteer-core');
 const fonts = require('./fonts');
 
