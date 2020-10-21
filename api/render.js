@@ -14,10 +14,11 @@ module.exports = async function render(req, res) {
   console.time(url);
   try {
     const page = await (await getBrowser()).newPage();
-    await page.goto(url, { waitUntil: 'networkidle' });
-    html = await page.content();
+    await page.goto(url, { waitUntil: 'networkidle2' });
+    rawHtml = await page.content();
     res.statusCode = 200;
-    res.end(html);
+    res.setHeader('Content-Type', `text/plain`);
+    res.end(rawHtml.toString());
     page.close();
   } catch (e) {
     res.body = 'FAILED: ' + e.message;
