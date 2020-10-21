@@ -1,10 +1,10 @@
 const chrome = require('chrome-aws-lambda');
 let puppeteer
-try {
-  puppeteer = require('puppeteer');
-} catch (error) {
-  console.error(error)
-}
+// try {
+//   puppeteer = require('puppeteer');
+// } catch (error) {
+//   console.error(error)
+// }
 
 const puppeteerCore = require('puppeteer-core');
 const fonts = require('./fonts');
@@ -29,18 +29,18 @@ exports.getBrowser = (() => {
     // eslint-disable-next-line no-return-assign
     launching = new Promise((r) => (unlock = r));
     if (!browser || !(await isBrowserAvailable(browser))) {
-      if (process.env.NODE_ENV === 'development' && puppeteer) {
-        browser = await puppeteer.launch({
-          args: [
-            '--no-sandbox',
-            '--headless',
-            '--disable-gpu',
-            '-—disable-dev-tools',
-          ],
-          dumpio: true,
-          devtools: false,
-        });
-      }
+      // if (process.env.NODE_ENV === 'development' && puppeteer) {
+      //   browser = await puppeteer.launch({
+      //     args: [
+      //       '--no-sandbox',
+      //       '--headless',
+      //       '--disable-gpu',
+      //       '-—disable-dev-tools',
+      //     ],
+      //     dumpio: true,
+      //     devtools: false,
+      //   });
+      // }
 
       if (process.env.NODE_ENV === 'production' && puppeteerCore) {
         await Promise.all(
